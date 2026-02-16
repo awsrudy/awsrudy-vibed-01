@@ -1,0 +1,40 @@
+# Site Settings
+title: AWS Blog Scraper
+description: Automated scraping and search for AWS blog posts
+url: "https://awsrudy.github.io"
+baseurl: "/awsrudy-vibed-01"
+
+# Build Settings
+markdown: kramdown
+theme: null  # Using custom layouts
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Collections & Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - scraper/
+  - node_modules/
+  - vendor/
+  - .bundle/
+  - README.md
+  - .gitignore
+  - .github/
+
+# Pagination
+paginate: 20
+paginate_path: "/page:num/"
+
+# Search
+pagefind: true
