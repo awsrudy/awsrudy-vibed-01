@@ -1,0 +1,15 @@
+title: AWS Blog Search
+description: Automated AWS blog aggregator with powerful search and daily updates
+theme: jekyll-theme-minimal
+url: "https://awsrudy.github.io"
+baseurl: "/awsrudy-vibed-01"
+
+# Exclude from processing
+exclude:
+  - scraper.py
+  - requirements.txt
+  - README.md
+  - .github/
+  - vendor/
+  - Gemfile
+  - Gemfile.lock
