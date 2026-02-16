@@ -103,12 +103,43 @@ def main():
     for source in sources:
         logger.info(f"  - {source['name']} ({source['id']})")
 
-    # Placeholder: In Wave 2, we'll implement actual scraping here
-    logger.info("\nNote: Scraping logic will be implemented in Wave 2")
-    logger.info("For now, creating empty posts file...")
+    # Scrape all sources
+    all_posts = []
+    for source in sources:
+        try:
+            from scraper.scrapers import AWSRSSScraper
 
-    # Create empty posts file
-    save_posts([])
+            with AWSRSSScraper(source) as scraper:
+                posts = scraper.scrape()
+                all_posts.extend(posts)
+
+                logger.info(f"✓ {source['name']}: {len(posts)} posts")
+
+        except Exception as e:
+            logger.error(f"Failed to scrape {source['name']}: {e}")
+            continue
+
+    logger.info(f"\nTotal posts scraped: {len(all_posts)}")
+
+    # Deduplicate posts
+    from scraper.config import ENABLE_DEDUPLICATION
+    if ENABLE_DEDUPLICATION and all_posts:
+        from scraper.utils import deduplicate_posts
+
+        original_count = len(all_posts)
+        all_posts = deduplicate_posts(all_posts)
+        duplicates = original_count - len(all_posts)
+
+        if duplicates > 0:
+            logger.info(f"Removed {duplicates} duplicate posts")
+
+    # Sort posts by date (newest first)
+    from scraper.config import SORT_POSTS_BY_DATE
+    if SORT_POSTS_BY_DATE and all_posts:
+        all_posts = sorted(all_posts, key=lambda p: p['date'], reverse=True)
+
+    # Save posts
+    save_posts(all_posts)
 
     logger.info("\n" + "=" * 60)
     logger.info("Scraper completed successfully")
