@@ -20,6 +20,8 @@ from scraper.utils import (
     extract_aws_services,
     generate_slug,
     is_valid_url,
+    calculate_reading_time,
+    extract_code_blocks,
 )
 
 logger = logging.getLogger(__name__)
@@ -177,6 +179,12 @@ class BaseScraper(ABC):
             # Generate slug
             slug = generate_slug(title)
 
+            # Calculate reading time
+            reading_time = calculate_reading_time(content)
+
+            # Extract code blocks
+            code_blocks = extract_code_blocks(content)
+
             # Build standardized post object
             processed = {
                 'url': url,
@@ -192,6 +200,8 @@ class BaseScraper(ABC):
                 'services': services,
                 'tags': post.get('tags', []),
                 'image_url': post.get('image_url', ''),
+                'reading_time': reading_time,
+                'has_code': len(code_blocks) > 0,
             }
 
             return processed

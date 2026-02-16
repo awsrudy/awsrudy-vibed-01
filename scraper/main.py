@@ -57,29 +57,15 @@ def load_sources() -> list:
 
 def save_posts(posts: list):
     """
-    Save posts to JSON file
+    Save posts using PostStorage
 
     Args:
         posts: List of post dictionaries
     """
-    try:
-        output = {
-            "posts": posts,
-            "last_updated": datetime.now(pytz.UTC).isoformat(),
-            "total_posts": len(posts),
-            "sources": list(set(post.get('source', 'unknown') for post in posts)),
-        }
+    from scraper.storage import PostStorage
 
-        with open(POSTS_FILE, 'w') as f:
-            if PRETTY_JSON:
-                json.dump(output, f, indent=JSON_INDENT, ensure_ascii=False)
-            else:
-                json.dump(output, f, ensure_ascii=False)
-
-        logger.info(f"Saved {len(posts)} posts to {POSTS_FILE}")
-    except Exception as e:
-        logger.error(f"Failed to save posts: {e}")
-        sys.exit(1)
+    storage = PostStorage()
+    storage.save(posts, create_backup=True)
 
 
 def main():

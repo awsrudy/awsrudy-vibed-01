@@ -7,6 +7,7 @@ URL normalization, and AWS service detection.
 
 import re
 import logging
+import math
 from datetime import datetime
 from typing import Optional, List, Set
 from dateutil import parser as dateutil_parser
@@ -293,3 +294,108 @@ def deduplicate_posts(posts: List[dict]) -> List[dict]:
                 seen_urls[url] = post
 
     return unique_posts
+
+
+def calculate_reading_time(text: str, words_per_minute: int = 200) -> int:
+    """
+    Calculate reading time for text.
+
+    Args:
+        text: Text content (HTML or plain text)
+        words_per_minute: Average reading speed (default: 200 wpm)
+
+    Returns:
+        Reading time in minutes (minimum 1)
+    """
+    if not text:
+        return 1
+
+    # Strip HTML tags for word count
+    soup = BeautifulSoup(text, 'html.parser')
+    plain_text = soup.get_text(separator=' ', strip=True)
+
+    # Count words
+    words = len(plain_text.split())
+
+    # Calculate minutes
+    minutes = math.ceil(words / words_per_minute)
+
+    return max(1, minutes)  # Minimum 1 minute
+
+
+def extract_code_blocks(html_content: str) -> list:
+    """
+    Extract code blocks from HTML content.
+
+    Args:
+        html_content: HTML string
+
+    Returns:
+        List of code block dictionaries with language and content
+    """
+    if not html_content:
+        return []
+
+    soup = BeautifulSoup(html_content, 'html.parser')
+
+    code_blocks = []
+
+    # Find <pre><code> blocks
+    for pre in soup.find_all('pre'):
+        code = pre.find('code')
+        if code:
+            # Try to detect language from class
+            language = 'text'
+            if code.get('class'):
+                for cls in code['class']:
+                    if cls.startswith('language-'):
+                        language = cls.replace('language-', '')
+                        break
+
+            code_blocks.append({
+                'language': language,
+                'content': code.get_text(),
+            })
+
+    return code_blocks
+
+
+def validate_post(post: dict) -> tuple:
+    """
+    Validate a post has required fields and quality content.
+
+    Args:
+        post: Post dictionary
+
+    Returns:
+        Tuple of (is_valid: bool, issues: list)
+    """
+    issues = []
+
+    # Required fields
+    required_fields = ['url', 'title', 'date', 'source']
+    for field in required_fields:
+        if field not in post or not post[field]:
+            issues.append(f"Missing required field: {field}")
+
+    # URL validation
+    if 'url' in post and post['url']:
+        if not is_valid_url(post['url']):
+            issues.append(f"Invalid URL: {post['url']}")
+
+    # Title length (too short or too long)
+    if 'title' in post and post['title']:
+        title_len = len(post['title'])
+        if title_len < 10:
+            issues.append(f"Title too short: {title_len} characters")
+        elif title_len > 300:
+            issues.append(f"Title too long: {title_len} characters")
+
+    # Content validation (should have some content)
+    if 'content' in post and post['content']:
+        content_len = len(post['content'])
+        if content_len < 100:
+            issues.append(f"Content too short: {content_len} characters")
+
+    is_valid = len(issues) == 0
+    return (is_valid, issues)
