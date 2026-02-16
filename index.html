@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Blog Search - Stay Updated with AWS</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🚀 AWS Blog Search</h1>
+            <p class="subtitle">Automatically updated AWS blog content with powerful search</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search AWS blogs by title, content, category, or tags..." autocomplete="off">
+                <button id="searchBtn" onclick="performSearch()">Search</button>
+            </div>
+
+            <div class="filters">
+                <select id="categoryFilter" onchange="performSearch()">
+                    <option value="">All Categories</option>
+                </select>
+                <select id="sortBy" onchange="performSearch()">
+                    <option value="date-desc">Newest First</option>
+                    <option value="date-asc">Oldest First</option>
+                    <option value="relevance">Most Relevant</option>
+                </select>
+                <button id="clearFilters" onclick="clearFilters()">Clear Filters</button>
+            </div>
+
+            <div class="stats">
+                <span id="resultCount">Loading blog posts...</span>
+                <span id="lastUpdate"></span>
+            </div>
+        </div>
+
+        <div id="results" class="results-grid">
+            <!-- Results will be populated here -->
+        </div>
+
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Loading AWS blogs...</p>
+        </div>
+
+        <div id="noResults" class="no-results" style="display: none;">
+            <p>No results found. Try different search terms.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Automatically updated daily via GitHub Actions | Data sourced from AWS Blogs RSS feeds</p>
+            <p><a href="https://github.com/awsrudy/awsrudy-vibed-01" target="_blank">View on GitHub</a></p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

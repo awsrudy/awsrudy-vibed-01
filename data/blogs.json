@@ -1,0 +1,141 @@
+{
+  "lastUpdated": "2024-02-16T08:00:00Z",
+  "totalPosts": 15,
+  "posts": [
+    {
+      "title": "Introducing Amazon S3 Express One Zone - High-performance storage class",
+      "link": "https://aws.amazon.com/blogs/aws/new-amazon-s3-express-one-zone-high-performance-storage-class/",
+      "description": "Today, we're announcing Amazon S3 Express One Zone, a new high-performance, single-zone storage class purpose-built to deliver consistent single-digit millisecond data access for your most frequently accessed data and latency-sensitive applications.",
+      "category": "AWS News Blog",
+      "publishDate": "2024-02-15T10:00:00Z",
+      "tags": ["S3", "Storage", "Performance"],
+      "author": "AWS"
+    },
+    {
+      "title": "Building serverless applications with Amazon Bedrock and AWS Lambda",
+      "link": "https://aws.amazon.com/blogs/compute/building-serverless-applications-with-amazon-bedrock/",
+      "description": "Learn how to build serverless generative AI applications using Amazon Bedrock and AWS Lambda. This post walks through integrating foundation models into your serverless architecture.",
+      "category": "Compute Blog",
+      "publishDate": "2024-02-14T14:30:00Z",
+      "tags": ["Lambda", "Bedrock", "AI", "Serverless"],
+      "author": "AWS"
+    },
+    {
+      "title": "Securing your AWS environment with AWS Security Hub and Amazon GuardDuty",
+      "link": "https://aws.amazon.com/blogs/security/securing-aws-environment/",
+      "description": "Best practices for implementing a comprehensive security monitoring strategy using AWS Security Hub and Amazon GuardDuty to protect your cloud workloads.",
+      "category": "Security Blog",
+      "publishDate": "2024-02-14T09:00:00Z",
+      "tags": ["Security Hub", "GuardDuty", "Security", "Monitoring"],
+      "author": "AWS"
+    },
+    {
+      "title": "Fine-tuning foundation models in Amazon SageMaker",
+      "link": "https://aws.amazon.com/blogs/machine-learning/fine-tuning-foundation-models/",
+      "description": "Discover how to fine-tune large language models and foundation models using Amazon SageMaker, including best practices for training data preparation and model optimization.",
+      "category": "Machine Learning",
+      "publishDate": "2024-02-13T16:00:00Z",
+      "tags": ["SageMaker", "Machine Learning", "AI", "LLM"],
+      "author": "AWS"
+    },
+    {
+      "title": "Implementing CI/CD pipelines with AWS CodePipeline and GitHub Actions",
+      "link": "https://aws.amazon.com/blogs/devops/implementing-cicd-pipelines/",
+      "description": "Learn how to create robust continuous integration and deployment pipelines using AWS CodePipeline integrated with GitHub Actions for automated testing and deployment.",
+      "category": "DevOps Blog",
+      "publishDate": "2024-02-13T11:00:00Z",
+      "tags": ["CodePipeline", "CI/CD", "DevOps", "Automation"],
+      "author": "AWS"
+    },
+    {
+      "title": "Amazon Aurora PostgreSQL performance optimization techniques",
+      "link": "https://aws.amazon.com/blogs/database/aurora-postgresql-optimization/",
+      "description": "Deep dive into performance optimization strategies for Amazon Aurora PostgreSQL, including query tuning, indexing strategies, and connection pooling best practices.",
+      "category": "Database Blog",
+      "publishDate": "2024-02-12T13:00:00Z",
+      "tags": ["Aurora", "PostgreSQL", "Database", "Performance"],
+      "author": "AWS"
+    },
+    {
+      "title": "Building event-driven architectures with Amazon EventBridge",
+      "link": "https://aws.amazon.com/blogs/compute/building-event-driven-architectures/",
+      "description": "Learn how to design and implement scalable event-driven architectures using Amazon EventBridge to decouple your microservices and improve system resilience.",
+      "category": "Compute Blog",
+      "publishDate": "2024-02-12T10:00:00Z",
+      "tags": ["EventBridge", "Event-Driven", "Microservices", "Architecture"],
+      "author": "AWS"
+    },
+    {
+      "title": "Containerizing applications with Amazon ECS and AWS Fargate",
+      "link": "https://aws.amazon.com/blogs/containers/containerizing-applications/",
+      "description": "Step-by-step guide to containerizing your applications and deploying them using Amazon ECS with AWS Fargate for serverless container management.",
+      "category": "Containers",
+      "publishDate": "2024-02-11T15:00:00Z",
+      "tags": ["ECS", "Fargate", "Containers", "Docker"],
+      "author": "AWS"
+    },
+    {
+      "title": "Real-time analytics with Amazon Kinesis and Amazon Redshift",
+      "link": "https://aws.amazon.com/blogs/big-data/real-time-analytics/",
+      "description": "Build real-time analytics pipelines using Amazon Kinesis for streaming data ingestion and Amazon Redshift for data warehousing and analysis.",
+      "category": "Big Data Blog",
+      "publishDate": "2024-02-11T12:00:00Z",
+      "tags": ["Kinesis", "Redshift", "Analytics", "Streaming"],
+      "author": "AWS"
+    },
+    {
+      "title": "Optimizing costs with AWS Cost Explorer and AWS Budgets",
+      "link": "https://aws.amazon.com/blogs/aws/optimizing-costs/",
+      "description": "Learn how to effectively monitor and optimize your AWS spending using AWS Cost Explorer, AWS Budgets, and cost allocation tags.",
+      "category": "AWS News Blog",
+      "publishDate": "2024-02-10T14:00:00Z",
+      "tags": ["Cost Optimization", "Budgets", "FinOps"],
+      "author": "AWS"
+    },
+    {
+      "title": "Building resilient architectures with AWS resilience services",
+      "link": "https://aws.amazon.com/blogs/architecture/building-resilient-architectures/",
+      "description": "Design patterns and best practices for building highly available and resilient applications on AWS using multi-AZ deployments and AWS Backup.",
+      "category": "Architecture Blog",
+      "publishDate": "2024-02-10T09:00:00Z",
+      "tags": ["Architecture", "Resilience", "High Availability", "Backup"],
+      "author": "AWS"
+    },
+    {
+      "title": "Implementing zero-trust security with AWS IAM Identity Center",
+      "link": "https://aws.amazon.com/blogs/security/zero-trust-security/",
+      "description": "Implement zero-trust security principles in your AWS environment using AWS IAM Identity Center, AWS Organizations, and service control policies.",
+      "category": "Security Blog",
+      "publishDate": "2024-02-09T13:00:00Z",
+      "tags": ["IAM", "Security", "Zero Trust", "Identity"],
+      "author": "AWS"
+    },
+    {
+      "title": "Accelerating application development with AWS Amplify",
+      "link": "https://aws.amazon.com/blogs/mobile/accelerating-development-amplify/",
+      "description": "Build full-stack web and mobile applications faster with AWS Amplify, including authentication, APIs, and hosting in a single platform.",
+      "category": "Front-End Web & Mobile",
+      "publishDate": "2024-02-09T10:00:00Z",
+      "tags": ["Amplify", "Mobile", "Web Development", "Full-Stack"],
+      "author": "AWS"
+    },
+    {
+      "title": "Managing IoT devices at scale with AWS IoT Core",
+      "link": "https://aws.amazon.com/blogs/iot/managing-iot-devices/",
+      "description": "Best practices for managing millions of IoT devices using AWS IoT Core, including device provisioning, fleet management, and over-the-air updates.",
+      "category": "IoT",
+      "publishDate": "2024-02-08T14:00:00Z",
+      "tags": ["IoT", "Device Management", "Edge Computing"],
+      "author": "AWS"
+    },
+    {
+      "title": "Building multi-region applications with Amazon DynamoDB Global Tables",
+      "link": "https://aws.amazon.com/blogs/database/dynamodb-global-tables/",
+      "description": "Learn how to build globally distributed applications with single-digit millisecond latency using Amazon DynamoDB Global Tables for multi-region replication.",
+      "category": "Database Blog",
+      "publishDate": "2024-02-08T11:00:00Z",
+      "tags": ["DynamoDB", "Global Tables", "Multi-Region", "NoSQL"],
+      "author": "AWS"
+    }
+  ]
+}
