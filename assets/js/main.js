@@ -30,4 +30,37 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log('Page load time:', loadTime + 'ms');
     });
   }
+
+  // Dark mode toggle
+  const darkModeToggle = document.createElement('button');
+  darkModeToggle.className = 'dark-mode-toggle';
+  darkModeToggle.innerHTML = '&#127763;'; // Moon/sun emoji
+  darkModeToggle.title = 'Toggle dark mode';
+  darkModeToggle.setAttribute('aria-label', 'Toggle dark mode');
+
+  darkModeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDark);
+    darkModeToggle.innerHTML = isDark ? '&#9728;' : '&#127763;'; // Sun or moon
+  });
+
+  document.body.appendChild(darkModeToggle);
+
+  // Load dark mode preference
+  if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+    darkModeToggle.innerHTML = '&#9728;'; // Sun emoji
+  }
+
+  // Quick search functionality
+  const quickSearch = document.getElementById('quick-search');
+  if (quickSearch) {
+    quickSearch.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const query = quickSearch.value;
+        window.location.href = '{{ "/search/" | relative_url }}?q=' + encodeURIComponent(query);
+      }
+    });
+  }
 });

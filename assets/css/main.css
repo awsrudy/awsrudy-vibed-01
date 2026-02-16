@@ -181,6 +181,41 @@ a:hover {
   opacity: 0.9;
 }
 
+.search-quick {
+  margin-top: var(--spacing-lg);
+  display: flex;
+  gap: 1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-quick input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.search-quick button {
+  padding: 0.75rem 1.5rem;
+  background: var(--color-secondary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.search-quick button:hover {
+  background: #e88800;
+  transform: translateY(-2px);
+}
+
 /* ---- Post Card ---- */
 .posts-grid {
   display: grid;
@@ -528,4 +563,96 @@ a:hover {
   .stat-number {
     font-size: 2rem;
   }
+
+  .search-quick {
+    flex-direction: column;
+  }
+}
+
+/* ---- Dark Mode Support ---- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: #e0e0e0;
+    --color-text-light: #b0b0b0;
+    --color-bg: #1a1a1a;
+    --color-bg-light: #2a2a2a;
+    --color-border: #404040;
+  }
+
+  .post-card,
+  .source-card,
+  .search-interface {
+    background: var(--color-bg-light);
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #1a2332 0%, #0d3b66 100%);
+  }
+
+  .site-footer {
+    background: var(--color-bg-light);
+  }
+
+  input,
+  select {
+    background: var(--color-bg);
+    color: var(--color-text);
+    border-color: var(--color-border);
+  }
+}
+
+/* Dark mode toggle button */
+body.dark-mode {
+  --color-text: #e0e0e0;
+  --color-text-light: #b0b0b0;
+  --color-bg: #1a1a1a;
+  --color-bg-light: #2a2a2a;
+  --color-border: #404040;
+}
+
+body.dark-mode .post-card,
+body.dark-mode .source-card,
+body.dark-mode .search-interface {
+  background: var(--color-bg-light);
+}
+
+body.dark-mode .hero {
+  background: linear-gradient(135deg, #1a2332 0%, #0d3b66 100%);
+}
+
+body.dark-mode .site-footer {
+  background: var(--color-bg-light);
+}
+
+body.dark-mode input,
+body.dark-mode select {
+  background: var(--color-bg);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.dark-mode-toggle {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 1rem;
+  background: var(--color-secondary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+  font-size: 1.5rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.dark-mode-toggle:hover {
+  background: #e88800;
+  transform: scale(1.1);
 }

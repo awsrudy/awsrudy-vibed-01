@@ -70,7 +70,7 @@ def save_posts(posts: list):
 
 def main():
     """
-    Main scraper execution
+    Main scraper execution with error handling and monitoring
 
     This is a skeleton implementation for Wave 1.
     Actual scraping logic will be implemented in Wave 2.
@@ -89,8 +89,11 @@ def main():
     for source in sources:
         logger.info(f"  - {source['name']} ({source['id']})")
 
-    # Scrape all sources
+    # Scrape all sources with error tracking
     all_posts = []
+    failed_sources = []
+    successful_sources = []
+
     for source in sources:
         try:
             from scraper.scrapers import AWSRSSScraper
@@ -100,12 +103,29 @@ def main():
                 all_posts.extend(posts)
 
                 logger.info(f"✓ {source['name']}: {len(posts)} posts")
+                successful_sources.append(source['name'])
 
         except Exception as e:
-            logger.error(f"Failed to scrape {source['name']}: {e}")
+            logger.error(f"✗ Failed to scrape {source['name']}: {e}")
+            failed_sources.append(source['name'])
             continue
 
     logger.info(f"\nTotal posts scraped: {len(all_posts)}")
+    logger.info(f"Successful sources: {len(successful_sources)}/{len(sources)}")
+
+    # Critical error check: no posts scraped at all
+    if len(all_posts) == 0:
+        logger.error("CRITICAL: No posts scraped from any source!")
+        logger.error("This may indicate a network issue or all sources are down.")
+        if failed_sources:
+            logger.error(f"Failed sources: {', '.join(failed_sources)}")
+        # In production, send notification (email, Slack, etc.)
+        sys.exit(1)
+
+    # Warning: some sources failed
+    if failed_sources:
+        logger.warning(f"WARNING: {len(failed_sources)} source(s) failed: {', '.join(failed_sources)}")
+        # In production, send notification
 
     # Deduplicate posts
     from scraper.config import ENABLE_DEDUPLICATION
@@ -125,10 +145,16 @@ def main():
         all_posts = sorted(all_posts, key=lambda p: p['date'], reverse=True)
 
     # Save posts
-    save_posts(all_posts)
+    try:
+        save_posts(all_posts)
+        logger.info("✓ Posts saved successfully")
+    except Exception as e:
+        logger.error(f"CRITICAL: Failed to save posts: {e}")
+        sys.exit(1)
 
     logger.info("\n" + "=" * 60)
     logger.info("Scraper completed successfully")
+    logger.info(f"Summary: {len(all_posts)} posts from {len(successful_sources)} sources")
     logger.info("=" * 60)
 
 

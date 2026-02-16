@@ -28,6 +28,11 @@ description: Automated scraping and search for AWS blog posts
         {% endif %}
       </div>
       {% endif %}
+
+      <div class="search-quick">
+        <input type="text" id="quick-search" placeholder="Quick search..." aria-label="Quick search">
+        <button onclick="window.location.href='{{ '/search/' | relative_url }}'">Advanced Search</button>
+      </div>
     </div>
   </section>
 

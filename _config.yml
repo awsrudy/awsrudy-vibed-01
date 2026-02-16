@@ -38,3 +38,19 @@ paginate_path: "/page:num/"
 
 # Search
 pagefind: true
+
+# SEO and Social
+lang: en
+twitter:
+  username: AWSCloud
+  card: summary_large_image
+
+social:
+  name: AWS Blog Scraper
+  links:
+    - https://github.com/awsrudy/awsrudy-vibed-01
+
+# Author
+author:
+  name: AWS Blog Scraper
+  url: https://awsrudy.github.io/awsrudy-vibed-01
