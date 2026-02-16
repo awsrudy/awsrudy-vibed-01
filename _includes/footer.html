@@ -1,0 +1,27 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <p class="copyright">&copy; {{ 'now' | date: "%Y" }} {{ site.title }}</p>
+        <p class="powered-by">Powered by Jekyll & GitHub Pages</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Blog Sources</h4>
+        <ul>
+          {% for source in site.data.sources.sources %}
+          <li><a href="{{ source.url }}" target="_blank" rel="noopener">{{ source.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="footer-stats">
+        <h4>Statistics</h4>
+        {% if site.data.posts.metadata %}
+        <p>Total Posts: <strong>{{ site.data.posts.metadata.total_posts }}</strong></p>
+        <p>Last Updated: <strong>{{ site.data.posts.metadata.last_updated | date: "%b %d, %Y" }}</strong></p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>

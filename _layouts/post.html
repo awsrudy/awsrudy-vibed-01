@@ -1,0 +1,51 @@
+---
+layout: default
+---
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="container">
+      <div class="post-meta">
+        <span class="post-source">{{ page.post.source }}</span>
+        <span class="post-date">{{ page.post.date | date: "%B %d, %Y" }}</span>
+        {% if page.post.reading_time %}
+        <span class="post-reading-time">🕒 {{ page.post.reading_time }} min read</span>
+        {% endif %}
+        {% if page.post.author %}
+        <span class="post-author">By {{ page.post.author }}</span>
+        {% endif %}
+      </div>
+
+      <h1 class="post-title">{{ page.post.title }}</h1>
+
+      {% if page.post.summary %}
+      <div class="post-summary">
+        {{ page.post.summary }}
+      </div>
+      {% endif %}
+
+      {% if page.post.services and page.post.services.size > 0 %}
+      <div class="post-services">
+        <strong>AWS Services:</strong>
+        {% for service in page.post.services %}
+          <span class="service-tag">{{ service }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="post-content container">
+    {{ page.post.content }}
+  </div>
+
+  <footer class="post-footer container">
+    <div class="post-source-link">
+      <a href="{{ page.post.url }}" target="_blank" rel="noopener">View Original Post on {{ page.post.source }} →</a>
+    </div>
+
+    <div class="post-navigation">
+      <a href="{{ '/' | relative_url }}" class="back-to-home">← Back to Home</a>
+    </div>
+  </footer>
+</article>

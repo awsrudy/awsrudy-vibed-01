@@ -6,42 +6,25 @@
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
 
-  <!-- SEO Plugin -->
   {% seo %}
-
-  <!-- Feed Plugin -->
   {% feed_meta %}
 
-  <!-- Favicon (placeholder - will add in Wave 5) -->
-  <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
-
-  <!-- Stylesheet (placeholder - will add in Wave 3) -->
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-</head>
-<body>
-  <!-- Header (will enhance in Wave 3) -->
-  <header class="site-header">
-    <div class="container">
-      <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-      <p>{{ site.description }}</p>
-    </div>
-  </header>
 
-  <!-- Main Content -->
-  <main class="site-content">
-    <div class="container">
-      {{ content }}
-    </div>
+  <!-- Favicon placeholder -->
+  <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
+</head>
+<body class="{% if page.layout %}layout-{{ page.layout }}{% endif %}">
+
+  {% include header.html %}
+
+  <main class="site-main">
+    {{ content }}
   </main>
 
-  <!-- Footer (will enhance in Wave 3) -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. Powered by Jekyll and GitHub Pages.</p>
-    </div>
-  </footer>
+  {% include footer.html %}
 
-  <!-- Search Scripts (will add in Wave 4) -->
-  <!-- JavaScript (will add in Wave 3+) -->
+  <!-- Search scripts will be added in Wave 4 -->
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
 </html>
