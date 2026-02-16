@@ -1,0 +1,207 @@
+---
+layout: default
+title: About
+description: About AWS Blog Scraper
+---
+
+<div class="about-page container">
+  <h1>About AWS Blog Scraper</h1>
+
+  <section class="about-section">
+    <h2>What is this?</h2>
+    <p>AWS Blog Scraper is an automated tool that aggregates blog posts from multiple official AWS blogs into a single, searchable archive. This project makes it easier to discover and explore AWS content across different blog sources.</p>
+  </section>
+
+  <section class="about-section">
+    <h2>Blog Sources</h2>
+    <ul class="sources-list">
+      {% for source in site.data.sources.sources %}
+      <li>
+        <strong>{{ source.name }}</strong> - {{ source.description }}
+        <br>
+        <a href="{{ source.url }}" target="_blank" rel="noopener">{{ source.url }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="about-section">
+    <h2>How It Works</h2>
+    <ol class="process-list">
+      <li><strong>Scraping</strong>: Python scraper fetches posts from RSS feeds daily</li>
+      <li><strong>Processing</strong>: Content is cleaned, AWS services are detected, reading time is calculated</li>
+      <li><strong>Storage</strong>: Posts are stored in JSON format with rich metadata</li>
+      <li><strong>Search</strong>: Pagefind creates a client-side search index</li>
+      <li><strong>Display</strong>: Jekyll builds a static site hosted on GitHub Pages</li>
+    </ol>
+  </section>
+
+  <section class="about-section">
+    <h2>Technology Stack</h2>
+    <ul class="tech-list">
+      <li><strong>Jekyll 4.3.3</strong> - Static Site Generator</li>
+      <li><strong>Python 3.11</strong> - Scraper</li>
+      <li><strong>Pagefind</strong> - Search</li>
+      <li><strong>GitHub Actions</strong> - Automation</li>
+      <li><strong>GitHub Pages</strong> - Hosting</li>
+    </ul>
+  </section>
+
+  <section class="about-section">
+    <h2>Statistics</h2>
+    {% if site.data.posts.metadata %}
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-value">{{ site.data.posts.metadata.total_posts }}</span>
+        <span class="stat-desc">Total Posts</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">{{ site.data.posts.metadata.sources | size }}</span>
+        <span class="stat-desc">Blog Sources</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">{{ site.data.posts.metadata.last_updated | date: "%B %d, %Y" }}</span>
+        <span class="stat-desc">Last Updated</span>
+      </div>
+    </div>
+    {% endif %}
+  </section>
+
+  <section class="about-section">
+    <h2>Features</h2>
+    <ul class="features-list">
+      <li>Daily automated scraping of AWS blog posts</li>
+      <li>Full-text search powered by Pagefind</li>
+      <li>Filter by source, AWS service, and content type</li>
+      <li>Responsive design with AWS branding</li>
+      <li>Dark mode support</li>
+      <li>Reading time estimates</li>
+      <li>AWS service detection and tagging</li>
+      <li>Code snippet detection</li>
+    </ul>
+  </section>
+
+  <section class="about-section">
+    <h2>Credits</h2>
+    <p>Built with AI-DLC (AI-Driven Lifecycle) methodology using Claude Sonnet 4.5.</p>
+    <p>This is an independent project and is not officially affiliated with Amazon Web Services.</p>
+  </section>
+
+  <div class="about-actions">
+    <a href="{{ '/' | relative_url }}" class="btn-primary">Back to Home</a>
+    <a href="{{ '/search/' | relative_url }}" class="btn-secondary">Search Posts</a>
+  </div>
+</div>
+
+<style>
+.about-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.about-section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.about-section:last-of-type {
+  border-bottom: none;
+}
+
+.about-section h2 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.sources-list li,
+.process-list li,
+.tech-list li,
+.features-list li {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.sources-list a {
+  color: var(--color-accent);
+  font-size: 0.9rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--color-bg-light);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.stat-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+
+.stat-desc {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+}
+
+.about-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 1rem 2rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+  display: inline-block;
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--color-secondary);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #e88800;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-actions {
+    flex-direction: column;
+  }
+}
+</style>

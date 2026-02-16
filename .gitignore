@@ -9,6 +9,8 @@ _site/
 
 # Additional Ruby/bundler ignore for when you run: bundle install
 /vendor
+vendor/bundle/
+.bundle/
 
 # Specific ignore for GitHub Pages
 # GitHub Pages will always use its own deployed version of pages-gem 
@@ -16,3 +18,5 @@ _site/
 # counterproductive to check this file into the repository.
 # Details at https://github.com/github/pages-gem/issues/768
 Gemfile.lock
+__pycache__/
+*.pyc

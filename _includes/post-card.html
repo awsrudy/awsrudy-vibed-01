@@ -1,0 +1,45 @@
+{% comment %}
+Post card component for displaying post previews
+Usage: {% include post-card.html post=post %}
+{% endcomment %}
+
+<article class="post-card">
+  <div class="post-meta">
+    <span class="post-source">{{ include.post.source }}</span>
+    <span class="post-date">{{ include.post.date | date: "%b %d, %Y" }}</span>
+    {% if include.post.reading_time %}
+    <span class="post-reading-time">{{ include.post.reading_time }} min read</span>
+    {% endif %}
+  </div>
+
+  <h2 class="post-title">
+    <a href="{{ include.post.url }}" target="_blank" rel="noopener">
+      {{ include.post.title }}
+    </a>
+  </h2>
+
+  {% if include.post.summary %}
+  <div class="post-summary">
+    {{ include.post.summary }}
+  </div>
+  {% endif %}
+
+  {% if include.post.services and include.post.services.size > 0 %}
+  <div class="post-services">
+    <strong>AWS Services:</strong>
+    {% for service in include.post.services limit:5 %}
+      <span class="service-tag">{{ service }}</span>
+    {% endfor %}
+    {% if include.post.services.size > 5 %}
+      <span class="service-more">+{{ include.post.services.size | minus: 5 }} more</span>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <div class="post-footer">
+    <a href="{{ include.post.url }}" target="_blank" rel="noopener" class="read-more">Read on {{ include.post.source }} →</a>
+    {% if include.post.has_code %}
+    <span class="has-code-badge" title="Contains code examples">💻 Code</span>
+    {% endif %}
+  </div>
+</article>

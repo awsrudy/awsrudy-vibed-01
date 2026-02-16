@@ -1,0 +1,20 @@
+<header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="site-branding">
+        <h1 class="site-title">
+          <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+        </h1>
+        <p class="site-description">{{ site.description }}</p>
+      </div>
+
+      <nav class="site-nav">
+        <ul>
+          <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
+          <li><a href="{{ '/search/' | relative_url }}" {% if page.url contains '/search' %}class="active"{% endif %}>Search</a></li>
+          <li><a href="{{ '/about/' | relative_url }}" {% if page.url contains '/about' %}class="active"{% endif %}>About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

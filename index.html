@@ -1,0 +1,76 @@
+---
+layout: default
+title: Home
+description: Automated scraping and search for AWS blog posts
+---
+
+<div class="homepage">
+  <section class="hero">
+    <div class="container">
+      <h2>AWS Blog Archive</h2>
+      <p>Explore the latest AWS blog posts from multiple official sources, all in one place.</p>
+
+      {% if site.data.posts.metadata %}
+      <div class="stats-bar">
+        <div class="stat">
+          <span class="stat-number">{{ site.data.posts.metadata.total_posts }}</span>
+          <span class="stat-label">Total Posts</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">{{ site.data.posts.metadata.sources | size }}</span>
+          <span class="stat-label">Blog Sources</span>
+        </div>
+        {% if site.data.posts.statistics.average_reading_time %}
+        <div class="stat">
+          <span class="stat-number">{{ site.data.posts.statistics.average_reading_time }}</span>
+          <span class="stat-label">Avg. Read Time (min)</span>
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      <div class="search-quick">
+        <input type="text" id="quick-search" placeholder="Quick search..." aria-label="Quick search">
+        <button onclick="window.location.href='{{ '/search/' | relative_url }}'">Advanced Search</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="posts-listing">
+    <div class="container">
+      <div class="filter-bar">
+        <h3>Recent Posts</h3>
+        <!-- Filters will be enhanced in Wave 4 -->
+      </div>
+
+      <div class="posts-grid">
+        {% assign posts = site.data.posts.posts | sort: 'date' | reverse %}
+        {% for post in posts limit:20 %}
+          {% include post-card.html post=post %}
+        {% endfor %}
+      </div>
+
+      {% if site.data.posts.posts.size > 20 %}
+      <div class="pagination-notice">
+        <p>Showing 20 most recent posts. Use search to find specific topics.</p>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="sources-info">
+    <div class="container">
+      <h3>Blog Sources</h3>
+      <div class="sources-grid">
+        {% for source in site.data.sources.sources %}
+        <div class="source-card">
+          <h4>{{ source.name }}</h4>
+          <p>{{ source.description }}</p>
+          <a href="{{ source.url }}" target="_blank" rel="noopener">Visit Blog →</a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</div>
+
